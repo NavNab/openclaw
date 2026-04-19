@@ -117,6 +117,10 @@ export type ResolvedTtsConfig = {
     speed?: number;
     instructions?: string;
   };
+  piper: {
+    modelsDir: string;
+    piperBin: string;
+  };
   edge: {
     enabled: boolean;
     voice: string;
@@ -306,6 +310,11 @@ export function resolveTtsConfig(cfg: OpenClawConfig): ResolvedTtsConfig {
       voice: raw.openai?.voice ?? DEFAULT_OPENAI_VOICE,
       speed: raw.openai?.speed,
       instructions: raw.openai?.instructions?.trim() || undefined,
+    },
+    piper: {
+      modelsDir:
+        raw.piper?.modelsDir?.trim() || process.env.PIPER_MODELS_DIR?.trim() || "/opt/piper-models",
+      piperBin: raw.piper?.piperBin?.trim() || process.env.PIPER_BIN?.trim() || "piper",
     },
     edge: {
       enabled: rawMicrosoft.enabled ?? true,

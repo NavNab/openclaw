@@ -93,6 +93,13 @@ export type TtsConfig = {
     proxy?: string;
     timeoutMs?: number;
   };
+  /** Piper (local CPU-based TTS) configuration. */
+  piper?: {
+    /** Directory containing .onnx model files. */
+    modelsDir?: string;
+    /** Path to piper binary (default: "piper" from PATH). */
+    piperBin?: string;
+  };
   /** Optional path for local TTS user preferences JSON. */
   prefsPath?: string;
   /** Hard cap for text sent to TTS (chars). */
